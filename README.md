@@ -24,15 +24,11 @@
 
 ## What the platform can does :checkered_flag:
 
-[] Manage people who will use the system with security
-
-[] CRUD | Manage books
-
-[] Provide loan system
-
-[] Calendar to show better the books that were borrowed and their return dates
-
-[] Tooltip system
+- [ ] Manage people who will use the system with security
+- [ ] CRUD | Manage books
+- [ ] Provide loan system
+- [ ] Calendar to show better the books that were borrowed and their return dates
+- [ ] Tooltip system
 
 ## How to start application
 Do download and build with:
