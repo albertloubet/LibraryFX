@@ -1,0 +1,66 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+group = 'com.github.albertloubet'
+version = '1.0-SNAPSHOT'
+
+targetCompatibility = "17"
+sourceCompatibility = "17"
+
+repositories {
+    mavenCentral()
+}
+
+def javaFXPlatform = getJavaFXPlatform()
+def javaFXVersion = "17.0.7"
+def lombokVersion = "1.18.28"
+
+javafx {
+    version = "17"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+application {
+    mainModule.set('com.github.albertloubet.libraryfx')
+    mainClass.set('com.github.albertloubet.libraryfx.Program')
+}
+
+dependencies {
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+    implementation "org.openjfx:javafx-base:${javaFXVersion}:${javaFXPlatform}"
+    implementation "org.openjfx:javafx-controls:${javaFXVersion}:${javaFXPlatform}"
+    implementation "org.openjfx:javafx-graphics:${javaFXVersion}:${javaFXPlatform}"
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    modularity.inferModulePath.set(true)
+}
+
+private static String getJavaFXPlatform() {
+    def currentOS = DefaultNativePlatform.currentOperatingSystem;
+    if (currentOS.isWindows()) {
+        return 'win'
+    } else if (currentOS.isLinux()) {
+        return 'linux'
+    } else if (currentOS.isMacOsX()) {
+        return 'mac'
+    }
+    return null
+}
