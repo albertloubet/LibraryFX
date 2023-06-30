@@ -21,6 +21,8 @@ out/
 .settings
 .springBeans
 .sts4-cache
+.remember.json
+remember.json
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/

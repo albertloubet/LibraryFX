@@ -17,7 +17,8 @@
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white"/>
   <img src="http://img.shields.io/static/v1?label=JAVA%20FX&message=17.0.7&color=red&style=for-the-badge"/>
   <img src="http://img.shields.io/static/v1?label=LOMBOK&message=1.18.28&color=blue&style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MYSQL-316192?style=for-the-badge&logo=mysql&logoColor=white"/>
+  <img src="http://img.shields.io/static/v1?label=FLYWAY&message=9.8.1&color=yellow&style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
   <img src="http://img.shields.io/static/v1?label=TESTS&message=NOTHING&color=red&style=for-the-badge"/>
 </p>

@@ -1,0 +1,43 @@
+.root-panel {
+    -fx-background-color:  #6383fa;
+}
+
+.root-login {
+    -fx-background-color:  #f1f1f1;
+}
+
+.root-panel-login {
+    -fx-background-color:  #ffffff;
+    -fx-background-radius: 16;
+}
+
+.root {
+    -fx-background-color:  #ffffff;
+}
+
+* {
+	-fx-primary-color: #6383fa;
+	-fx-secondary-color: #4B6EAF;
+	-fx-grey-color: #b9b9b9;
+
+	-fx-focus-color: -fx-secondary-color;
+}
+
+.common-text {
+    -fx-font-family: 'Poppins Regular';
+}
+
+.text-field {
+	-fx-accent: -fx-primary-color;
+	-fx-background-color: -fx-grey-color, white;
+	-fx-background-insets: 0, 0 0 1 0;
+	-fx-background-radius: 0;
+}
+.text-field:focused {
+	-fx-background-color: -fx-primary-color, white;
+}
+
+.progress-bar {
+    -fx-box-border: goldenrod;
+    -fx-accent: #6383fa;
+}

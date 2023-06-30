@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  libraryfxdb:
+    image: mariadb:11
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=20235253
+      - MYSQL_DATABASE=libraryfx
+      - MYSQL_USER=libraryfx-user
+      - MYSQL_PASSWORD=20230125
+    networks:
+      - libraryfx-network
+    volumes:
+      - libraryfx-volume:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+networks:
+  libraryfx-network:
+    driver: bridge
+
+volumes:
+  libraryfx-volume:

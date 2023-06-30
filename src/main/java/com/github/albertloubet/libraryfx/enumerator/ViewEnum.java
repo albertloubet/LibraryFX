@@ -7,8 +7,11 @@ import java.util.Objects;
 
 @AllArgsConstructor
 public enum ViewEnum {
-    LOGIN("/views/login.fxml");
+    SPLASH("splash", "/views/splash.fxml"),
+    LOGIN("login", "/views/login.fxml"),
+    LIBRARY("library", "/views/library.fxml");
 
+    private final String name;
     private final String path;
 
     public URL recoverViewPath() {

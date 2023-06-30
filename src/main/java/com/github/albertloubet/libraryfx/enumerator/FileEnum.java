@@ -5,10 +5,9 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ApplicationEnum {
+public enum FileEnum {
 
-    name("Biblioteca FX"),
-    version("1.0.0");
+    REMEMBER("remember.json");
 
-    private final String atrribute;
+    private final String name;
 }
