@@ -8,7 +8,6 @@ import com.github.albertloubet.libraryfx.foundation.ControllerFoundation;
 import com.github.albertloubet.libraryfx.manager.ScreenManager;
 import com.github.albertloubet.libraryfx.service.UserService;
 import com.github.albertloubet.libraryfx.util.SecurityUtil;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,14 +51,14 @@ public class LoginController extends ControllerFoundation implements FormControl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        labelTitle.setText(getLocalizationText(LocalizationEnum.TITLE.getText()));
-        labelSubtitle1.setText(getLocalizationText(LocalizationEnum.LOGIN_SUBTITLE_1.getText()));
-        labelSubtitle2.setText(getLocalizationText(LocalizationEnum.LOGIN_SUBTITLE_2.getText()));
-        labelRestrictedAcess.setText(getLocalizationText(LocalizationEnum.LOGIN_RESTRICTED_ACESS.getText()));
-        textFieldUsername.setPromptText(getLocalizationText(LocalizationEnum.USER_USERNAME.getText()));
-        passwordField.setPromptText(getLocalizationText(LocalizationEnum.USER_PASSWORD.getText()));
-        checkBoxRemember.setText(getLocalizationText(LocalizationEnum.LOGIN_REMEMBER_ME.getText()));
-        buttonAcess.setText(getLocalizationText(LocalizationEnum.LOGIN_SIGN_IN.getText()));
+        labelTitle.setText(getLocalizationText(LocalizationEnum.TITLE));
+        labelSubtitle1.setText(getLocalizationText(LocalizationEnum.LOGIN_SUBTITLE_1));
+        labelSubtitle2.setText(getLocalizationText(LocalizationEnum.LOGIN_SUBTITLE_2));
+        labelRestrictedAcess.setText(getLocalizationText(LocalizationEnum.LOGIN_RESTRICTED_ACESS));
+        textFieldUsername.setPromptText(getLocalizationText(LocalizationEnum.USER_USERNAME));
+        passwordField.setPromptText(getLocalizationText(LocalizationEnum.USER_PASSWORD));
+        checkBoxRemember.setText(getLocalizationText(LocalizationEnum.LOGIN_REMEMBER_ME));
+        buttonAcess.setText(getLocalizationText(LocalizationEnum.LOGIN_SIGN_IN));
 
         userService = new UserService();
     }
@@ -86,11 +85,11 @@ public class LoginController extends ControllerFoundation implements FormControl
                 ScreenManager.removeScreen(ViewEnum.LOGIN.name());
             });
         } catch (UserNotFoundException e) {
-            Platform.runLater(() -> addWarm(Optional.empty(), getLocalizationText(LocalizationEnum.USER_NOTFOUND.getText())));
+            Platform.runLater(() -> addWarm(Optional.empty(), getLocalizationText(LocalizationEnum.USER_NOTFOUND)));
         } catch (Exception e) {
             Platform.runLater(() -> addError(e,
-                    getLocalizationText(LocalizationEnum.LOGIN_ERROR_SUBTITLE.getText()),
-                    getLocalizationText(LocalizationEnum.LOGIN_ERROR_HEADER.getText())));
+                    getLocalizationText(LocalizationEnum.LOGIN_ERROR_SUBTITLE),
+                    getLocalizationText(LocalizationEnum.LOGIN_ERROR_HEADER)));
         } finally {
             enable();
         }

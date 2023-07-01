@@ -23,7 +23,13 @@ public enum LocalizationEnum {
 
     USER_USERNAME("user.username"),
     USER_PASSWORD("user.password"),
-    USER_NOTFOUND("user.notfound");
+    USER_NOTFOUND("user.notfound"),
+
+    MENU_CALENDAR("menu.calendar"),
+    MENU_PERSON("menu.person"),
+    MENU_BOOK("menu.book"),
+    MENU_LOAN("menu.loan"),
+    MENU_EXIT("menu.exit");
 
     private final String text;
 }

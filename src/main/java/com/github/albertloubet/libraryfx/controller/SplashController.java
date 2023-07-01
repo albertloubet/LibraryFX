@@ -1,6 +1,5 @@
 package com.github.albertloubet.libraryfx.controller;
 
-import com.github.albertloubet.libraryfx.Program;
 import com.github.albertloubet.libraryfx.enumerator.FileEnum;
 import com.github.albertloubet.libraryfx.enumerator.LocalizationEnum;
 import com.github.albertloubet.libraryfx.enumerator.ViewEnum;
@@ -33,7 +32,7 @@ public class SplashController extends ControllerFoundation {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        labelLoading.setText(getLocalizationText(LocalizationEnum.LOADING.getText()));
+        labelLoading.setText(getLocalizationText(LocalizationEnum.LOADING));
 
         userService = new UserService();
 
@@ -59,10 +58,9 @@ public class SplashController extends ControllerFoundation {
         var stage = new Stage();
 
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/assets/css/app.css")).toString());
-        stage.setTitle(LocalizationEnum.TITLE.getText());
         stage.setScene(scene);
         stage.setResizable(resizable);
-        stage.setTitle(getLocalizationText(LocalizationEnum.TITLE.getText()));
+        stage.setTitle(getLocalizationText(LocalizationEnum.TITLE));
 
         ScreenManager.closeStage();
         ScreenManager.removeScreen(ViewEnum.SPLASH.name());

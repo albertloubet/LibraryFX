@@ -27,9 +27,9 @@ import java.util.ResourceBundle;
 
 public abstract class ControllerFoundation implements Initializable {
 
-    public String getLocalizationText(@NonNull String key, Object... args) {
+    public String getLocalizationText(@NonNull LocalizationEnum key, Object... args) {
         var bundle = ResourceBundle.getBundle("messages", Locale.getDefault());
-        return MessageFormat.format(bundle.getString(key), args);
+        return MessageFormat.format(bundle.getString(key.getText()), args);
     }
 
     public Boolean addConfirm(String title, String header, String msg) {
@@ -46,7 +46,7 @@ public abstract class ControllerFoundation implements Initializable {
     public void addInfo(Optional<String> title, String msg) {
         var alert = new Alert(Alert.AlertType.INFORMATION);
 
-        alert.setTitle(title.orElse(getLocalizationText((LocalizationEnum.INFO.getText()))));
+        alert.setTitle(title.orElse(getLocalizationText((LocalizationEnum.INFO))));
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
@@ -64,7 +64,7 @@ public abstract class ControllerFoundation implements Initializable {
     public void addWarm(Optional<String> title, String msg) {
         var alert = new Alert(Alert.AlertType.WARNING);
 
-        alert.setTitle(title.orElse(getLocalizationText(LocalizationEnum.NOTICE.getText())));
+        alert.setTitle(title.orElse(getLocalizationText(LocalizationEnum.NOTICE)));
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();

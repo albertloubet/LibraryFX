@@ -1,20 +1,3 @@
-.root-panel {
-    -fx-background-color:  #6383fa;
-}
-
-.root-login {
-    -fx-background-color:  #f1f1f1;
-}
-
-.root-panel-login {
-    -fx-background-color:  #ffffff;
-    -fx-background-radius: 16;
-}
-
-.root {
-    -fx-background-color:  #ffffff;
-}
-
 * {
 	-fx-primary-color: #6383fa;
 	-fx-secondary-color: #4B6EAF;
@@ -23,8 +6,26 @@
 	-fx-focus-color: -fx-secondary-color;
 }
 
-.common-text {
-    -fx-font-family: 'Poppins Regular';
+.root-panel {
+    -fx-background-color: -fx-primary-color;
+}
+
+.root-login {
+    -fx-background-color: #f1f1f1;
+}
+
+.root-panel-login {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 16;
+}
+
+.root {
+    -fx-background-color: #ffffff;
+}
+
+.root-main {
+    -fx-background-color: #bdcdff;
+    -fx-background-radius: 16;
 }
 
 .text-field {
@@ -39,5 +40,58 @@
 
 .progress-bar {
     -fx-box-border: goldenrod;
-    -fx-accent: #6383fa;
+    -fx-accent: -fx-primary-color;
+}
+
+.menu-button {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-padding: 3 6 6 6;
+    -fx-font-weight: bold;
+}
+
+.menu-button SVGPath {
+    -fx-fill: #000;
+}
+
+.menu-button:hover {
+    -fx-background-color: #bdcdff;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-padding: 3 6 6 6;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover SVGPath {
+    -fx-fill: #ffffff;
+}
+
+.menu-button:pressed {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-padding: 3 6 6 6;
+    -fx-font-weight: bold;
+}
+
+.menu-button:pressed SVGPath {
+    -fx-fill: #ffffff;
+}
+
+.menu-button.active {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-padding: 3 6 6 6;
+    -fx-font-weight: bold;
+}
+
+.menu-button.active SVGPath {
+    -fx-fill: #ffffff;
 }
