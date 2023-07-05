@@ -2,12 +2,18 @@ package com.github.albertloubet.libraryfx.controller;
 
 import com.github.albertloubet.libraryfx.enumerator.FontEnum;
 import com.github.albertloubet.libraryfx.enumerator.LocalizationEnum;
+import com.github.albertloubet.libraryfx.enumerator.ViewEnum;
 import com.github.albertloubet.libraryfx.factory.FontFactory;
 import com.github.albertloubet.libraryfx.foundation.ControllerFoundation;
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import lombok.SneakyThrows;
+import org.apache.commons.lang3.StringUtils;
 
 import java.net.URL;
 import java.util.Map;
@@ -30,7 +36,12 @@ public class LibraryController extends ControllerFoundation {
     @FXML
     private Button buttonMenuExit;
 
+    @FXML
+    private AnchorPane anchorPaneMain;
+
     private Map<String, Button> menu;
+
+    private Map<String, ViewEnum> views;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,31 +67,42 @@ public class LibraryController extends ControllerFoundation {
                 buttonMenuExit.getId(), buttonMenuExit
         );
 
+        views = Map.of(
+                buttonMenuBook.getId(), ViewEnum.BOOK,
+                buttonMenuCalendar.getId(), ViewEnum.CALENDAR,
+                buttonMenuLoan.getId(), ViewEnum.LOAN,
+                buttonMenuPerson.getId(), ViewEnum.PERSON
+        );
+
         menu.forEach((id, btn) -> btn.setOnMouseClicked(this::onClickMenu));
         activeMenu(buttonMenuCalendar.getId());
+    }
+
+    @SneakyThrows
+    private void activeItem(String menuId) {
+        if (StringUtils.equals(buttonMenuExit.getId(), menuId)) {
+            Platform.exit();
+        } else {
+            var item = (Parent) FXMLLoader.load(views.get(menuId).recoverViewPath());
+
+            anchorPaneMain.getChildren().clear();
+
+            AnchorPane.setBottomAnchor(item, 0.0);
+            AnchorPane.setTopAnchor(item, 0.0);
+            AnchorPane.setRightAnchor(item, 0.0);
+            AnchorPane.setLeftAnchor(item, 0.0);
+
+            anchorPaneMain.getChildren().addAll(item);
+        }
     }
 
     private void activeMenu(String menuId) {
         menu.forEach((id, btn) -> btn.getStyleClass().removeAll("active"));
         menu.get(menuId).getStyleClass().add("active");
+        activeItem(menuId);
     }
 
     private void onClickMenu(Event e) {
-        var menuId = ((Button) e.getSource()).getId();
-        var menuButton = menu.get(menuId);
-
-        activeMenu(menuId);
-
-        if (menuButton.equals(buttonMenuCalendar)) {
-            System.out.println("test");
-        } else if (menuButton.equals(buttonMenuPerson)) {
-            System.out.println("test");
-        } else if (menuButton.equals(buttonMenuBook)) {
-            System.out.println("test");
-        } else if (menuButton.equals(buttonMenuLoan)) {
-            System.out.println("test");
-        } else if (menuButton.equals(buttonMenuExit)) {
-            Platform.exit();
-        }
+        activeMenu(((Button) e.getSource()).getId());
     }
 }

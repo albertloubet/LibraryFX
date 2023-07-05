@@ -30,6 +30,7 @@ public class Program extends Application {
 
         splashSStage.show();
     }
+
     public static void main(String[] args) {
         launch(args);
     }

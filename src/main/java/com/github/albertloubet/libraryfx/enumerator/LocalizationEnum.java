@@ -31,7 +31,14 @@ public enum LocalizationEnum {
     MENU_LOAN("menu.loan"),
     MENU_EXIT("menu.exit"),
 
-    ERROR_BASIC("error.basic");
+    ERROR_BASIC("error.basic"),
+
+    BUTTON_ADD("button.add"),
+
+    BOOK_NAME("book.name"),
+    BOOK_VOLUME("book.volume"),
+    BOOK_CODE("book.code"),
+    BOOK_QUANTITY("book.quantity");
 
     private final String text;
 }

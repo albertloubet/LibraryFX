@@ -2,7 +2,7 @@ package com.github.albertloubet.libraryfx.service;
 
 import com.github.albertloubet.libraryfx.enumerator.FileEnum;
 import com.github.albertloubet.libraryfx.manager.SessionManager;
-import com.github.albertloubet.libraryfx.model.dto.UserRememberDTO;
+import com.github.albertloubet.libraryfx.model.dto.UserRemember;
 import com.github.albertloubet.libraryfx.repository.UserRepository;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.concurrent.Executors;
 
 public class UserService {
@@ -36,14 +35,14 @@ public class UserService {
 
         if (rememberFile.exists()) {
             var reader = new JsonReader(new FileReader(FileEnum.REMEMBER.getName()));
-            var userRememberDTO = (UserRememberDTO) new Gson().fromJson(reader, new TypeToken<UserRememberDTO>() { }.getType());
-            authenticate(userRememberDTO.getUsername(), userRememberDTO.getPassword());
+            var userRemember = (UserRemember) new Gson().fromJson(reader, new TypeToken<UserRemember>() { }.getType());
+            authenticate(userRemember.username(), userRemember.password());
         }
     }
 
     public void saveUserSession(String password) {
         Executors.newSingleThreadExecutor().execute(() -> {
-            var user = UserRememberDTO.builder()
+            var user = UserRemember.builder()
                     .username(SessionManager.getUsernameLogged())
                     .password(password)
                     .build();

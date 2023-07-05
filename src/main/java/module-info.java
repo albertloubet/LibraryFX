@@ -9,6 +9,7 @@ module com.github.albertloubet.libraryfx {
 
     opens com.github.albertloubet.libraryfx.controller to javafx.fxml;
     opens com.github.albertloubet.libraryfx.model.dto to com.google.gson;
+    opens com.github.albertloubet.libraryfx.model.property to javafx.base;
 
     exports com.github.albertloubet.libraryfx;
 }

@@ -46,7 +46,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="root" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutX="296.0" layoutY="212.0" prefHeight="200.0" prefWidth="200.0" styleClass="root-main" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
+            <AnchorPane fx:id="anchorPaneMain" layoutX="296.0" layoutY="212.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="root-main" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
          </children>
       </AnchorPane>
    </center>
