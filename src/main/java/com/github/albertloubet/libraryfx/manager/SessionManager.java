@@ -1,13 +1,17 @@
-package com.github.albertloubet.libraryfx.util;
+package com.github.albertloubet.libraryfx.manager;
 
 import com.github.albertloubet.libraryfx.enumerator.ProfileEnum;
 import com.github.albertloubet.libraryfx.model.entity.User;
 
 import java.util.Objects;
 
-public final class SessionUtil {
+public final class SessionManager {
 
     private static User userLogged;
+
+    public static void setUserLogged(User userLogged) {
+        SessionManager.userLogged = userLogged;
+    }
 
     public static Long getIdUserLogged() {
         return userLogged.getId();
@@ -27,9 +31,5 @@ public final class SessionUtil {
 
     public static boolean hasUser() {
         return Objects.nonNull(userLogged);
-    }
-
-    public static void setUserLogged(User userLogged) {
-        SessionUtil.userLogged = userLogged;
     }
 }

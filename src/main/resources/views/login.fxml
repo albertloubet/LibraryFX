@@ -17,11 +17,11 @@
          <children>
             <AnchorPane layoutX="10.0" layoutY="212.0" prefHeight="200.0" prefWidth="211.0" styleClass="root-panel-login" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="9.0">
                <children>
-                  <TextField fx:id="textFieldUsername" layoutX="4.0" layoutY="40.0" promptText="Usuário" styleClass="common-text" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="40.0" />
-                  <PasswordField fx:id="passwordField" layoutX="4.0" layoutY="76.0" promptText="Senha" styleClass="common-text" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="76.0" />
-                  <CheckBox fx:id="checkBoxRemember" layoutX="4.0" layoutY="125.0" mnemonicParsing="false" styleClass="common-text" text="Lembrar-me" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="125.0" />
-                  <Button fx:id="buttonAcess" layoutX="4.0" layoutY="162.0" mnemonicParsing="false" onAction="#onAcess" prefHeight="24.0" prefWidth="167.0" styleClass="common-text" text="Acessar" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
-                  <Label fx:id="labelRestrictedAcess" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="14.0" styleClass="common-text" text="Acesso Restrito" textAlignment="CENTER" textOverrun="CLIP" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0" />
+                  <TextField fx:id="textFieldUsername" layoutX="4.0" layoutY="40.0" promptText="user.username" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="40.0" />
+                  <PasswordField fx:id="passwordField" layoutX="4.0" layoutY="76.0" promptText="user.password" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="76.0" />
+                  <CheckBox fx:id="checkBoxRemember" layoutX="4.0" layoutY="125.0" mnemonicParsing="false" text="login.rememberme" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="125.0" />
+                  <Button fx:id="buttonAcess" layoutX="4.0" layoutY="162.0" mnemonicParsing="false" onAction="#onAcess" prefHeight="24.0" prefWidth="167.0" text="login.signin" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" />
+                  <Label fx:id="labelRestrictedAcess" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="14.0" styleClass="common-text" text="login.restrictedacess" textAlignment="CENTER" textOverrun="CLIP" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0" />
                </children>
             </AnchorPane>
          </children>
@@ -37,13 +37,13 @@
                         <Image url="@../assets/images/logo-reverted.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="labelTitle" alignment="CENTER" styleClass="login-title" text="Biblioteca" textFill="WHITE" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="166.0">
+                  <Label fx:id="labelTitle" alignment="CENTER" styleClass="login-title" text="title" textFill="WHITE" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="166.0">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelSubtitle1" alignment="CENTER" styleClass="common-text" text="Uma plataforma digital para" textFill="WHITE" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="211.0" />
-                  <Label fx:id="labelSubtitle2" alignment="CENTER" styleClass="common-text" text="controle de livros" textFill="WHITE" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="227.0" />
+                  <Label fx:id="labelSubtitle1" alignment="CENTER" styleClass="common-text" text="login.subtitle1" textFill="WHITE" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="211.0" />
+                  <Label fx:id="labelSubtitle2" alignment="CENTER" styleClass="common-text" text="login.subtitle2" textFill="WHITE" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="227.0" />
                </children>
             </AnchorPane>
          </children>

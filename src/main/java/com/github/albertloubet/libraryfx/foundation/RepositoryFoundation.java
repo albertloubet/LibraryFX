@@ -12,7 +12,7 @@ public abstract class RepositoryFoundation {
     private static final String DATABASE = "libraryfx";
 
     @SneakyThrows
-    public Connection getConnection() {
+    protected Connection getConnection() {
         Class.forName("org.mariadb.jdbc.Driver");
         var url = String.format("jdbc:mariadb://localhost:3306/%s", DATABASE);
         return DriverManager.getConnection(url, USERNAME, PASSWORD);

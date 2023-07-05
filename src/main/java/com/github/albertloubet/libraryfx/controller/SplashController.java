@@ -1,8 +1,10 @@
 package com.github.albertloubet.libraryfx.controller;
 
 import com.github.albertloubet.libraryfx.enumerator.FileEnum;
+import com.github.albertloubet.libraryfx.enumerator.FontEnum;
 import com.github.albertloubet.libraryfx.enumerator.LocalizationEnum;
 import com.github.albertloubet.libraryfx.enumerator.ViewEnum;
+import com.github.albertloubet.libraryfx.factory.FontFactory;
 import com.github.albertloubet.libraryfx.foundation.ControllerFoundation;
 import com.github.albertloubet.libraryfx.manager.ScreenManager;
 import com.github.albertloubet.libraryfx.service.UserService;
@@ -28,15 +30,20 @@ public class SplashController extends ControllerFoundation {
     @FXML
     private Label labelLoading;
 
-    private UserService userService;
+    private final UserService userService;
+
+    public SplashController() {
+        userService = new UserService();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        labelLoading.setText(getLocalizationText(LocalizationEnum.LOADING));
-
-        userService = new UserService();
-
+        var fontPoppinsRegular = FontFactory.getFont(FontEnum.POPPINS_REGULAR);
         var timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> onInit()));
+
+        labelLoading.setText(getLocalizationText(LocalizationEnum.LOADING));
+        labelLoading.setFont(fontPoppinsRegular);
+
         Platform.runLater(timeline::play);
     }
 

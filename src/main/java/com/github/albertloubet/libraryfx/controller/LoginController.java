@@ -1,9 +1,11 @@
 package com.github.albertloubet.libraryfx.controller;
 
 import com.github.albertloubet.libraryfx.contract.FormController;
+import com.github.albertloubet.libraryfx.enumerator.FontEnum;
 import com.github.albertloubet.libraryfx.enumerator.LocalizationEnum;
 import com.github.albertloubet.libraryfx.enumerator.ViewEnum;
 import com.github.albertloubet.libraryfx.exception.UserNotFoundException;
+import com.github.albertloubet.libraryfx.factory.FontFactory;
 import com.github.albertloubet.libraryfx.foundation.ControllerFoundation;
 import com.github.albertloubet.libraryfx.manager.ScreenManager;
 import com.github.albertloubet.libraryfx.service.UserService;
@@ -16,6 +18,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import lombok.SneakyThrows;
 
 import java.net.URL;
 import java.util.Optional;
@@ -47,10 +50,18 @@ public class LoginController extends ControllerFoundation implements FormControl
     @FXML
     private Button buttonAcess;
 
-    private UserService userService;
+    private final UserService userService;
+
+    public LoginController() {
+        userService = new UserService();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        var fontPoppinsRegular = FontFactory.getFont(FontEnum.POPPINS_REGULAR);
+        var fontPoppinsMedium = FontFactory.getFont(FontEnum.POPPINS_MEDIUM);
+        var fontPoppinsSemibold = FontFactory.getFont(FontEnum.POPPINS_REGULAR, 36.0);
+
         labelTitle.setText(getLocalizationText(LocalizationEnum.TITLE));
         labelSubtitle1.setText(getLocalizationText(LocalizationEnum.LOGIN_SUBTITLE_1));
         labelSubtitle2.setText(getLocalizationText(LocalizationEnum.LOGIN_SUBTITLE_2));
@@ -60,7 +71,22 @@ public class LoginController extends ControllerFoundation implements FormControl
         checkBoxRemember.setText(getLocalizationText(LocalizationEnum.LOGIN_REMEMBER_ME));
         buttonAcess.setText(getLocalizationText(LocalizationEnum.LOGIN_SIGN_IN));
 
-        userService = new UserService();
+        labelTitle.setFont(fontPoppinsSemibold);
+        labelSubtitle1.setFont(fontPoppinsMedium);
+        labelSubtitle2.setFont(fontPoppinsMedium);
+        labelRestrictedAcess.setFont(fontPoppinsRegular);
+        textFieldUsername.setFont(fontPoppinsRegular);
+        passwordField.setFont(fontPoppinsRegular);
+        checkBoxRemember.setFont(fontPoppinsRegular);
+        buttonAcess.setFont(fontPoppinsRegular);
+    }
+
+    @SneakyThrows
+    private void goToLibrary() {
+        ScreenManager.addScreen(ViewEnum.LIBRARY.name(), FXMLLoader.load(ViewEnum.LIBRARY.recoverViewPath()));
+        ScreenManager.activate(ViewEnum.LIBRARY.name());
+        ScreenManager.setResizable(true);
+        ScreenManager.removeScreen(ViewEnum.LOGIN.name());
     }
 
     @FXML
@@ -68,31 +94,27 @@ public class LoginController extends ControllerFoundation implements FormControl
         var username = textFieldUsername.getText();
         var password = SecurityUtil.stringToSha512(passwordField.getText());
 
-        try {
-            disable();
+        disable();
 
-            userService.authenticate(username, password);
+        Platform.runLater(() -> {
+            try {
+                userService.authenticate(username, password);
 
-            if (checkBoxRemember.isSelected()) {
-                userService.saveUserSession(password);
+                if (checkBoxRemember.isSelected()) {
+                    userService.saveUserSession(password);
+                }
+
+                goToLibrary();
+            } catch (UserNotFoundException e) {
+                addWarm(Optional.empty(), getLocalizationText(LocalizationEnum.USER_NOTFOUND));
+            } catch (Exception exception) {
+                addError(exception,
+                        getLocalizationText(LocalizationEnum.LOGIN_ERROR_SUBTITLE),
+                        getLocalizationText(LocalizationEnum.LOGIN_ERROR_HEADER));
+            } finally {
+                enable();
             }
-
-            ScreenManager.addScreen(ViewEnum.LIBRARY.name(), FXMLLoader.load(ViewEnum.LIBRARY.recoverViewPath()));
-
-            Platform.runLater(() -> {
-                ScreenManager.activate(ViewEnum.LIBRARY.name());
-                ScreenManager.setResizable(true);
-                ScreenManager.removeScreen(ViewEnum.LOGIN.name());
-            });
-        } catch (UserNotFoundException e) {
-            Platform.runLater(() -> addWarm(Optional.empty(), getLocalizationText(LocalizationEnum.USER_NOTFOUND)));
-        } catch (Exception e) {
-            Platform.runLater(() -> addError(e,
-                    getLocalizationText(LocalizationEnum.LOGIN_ERROR_SUBTITLE),
-                    getLocalizationText(LocalizationEnum.LOGIN_ERROR_HEADER)));
-        } finally {
-            enable();
-        }
+        });
     }
 
     @Override

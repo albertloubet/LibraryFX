@@ -29,7 +29,9 @@ public enum LocalizationEnum {
     MENU_PERSON("menu.person"),
     MENU_BOOK("menu.book"),
     MENU_LOAN("menu.loan"),
-    MENU_EXIT("menu.exit");
+    MENU_EXIT("menu.exit"),
+
+    ERROR_BASIC("error.basic");
 
     private final String text;
 }

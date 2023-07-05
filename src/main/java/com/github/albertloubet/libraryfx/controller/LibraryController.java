@@ -1,6 +1,8 @@
 package com.github.albertloubet.libraryfx.controller;
 
+import com.github.albertloubet.libraryfx.enumerator.FontEnum;
 import com.github.albertloubet.libraryfx.enumerator.LocalizationEnum;
+import com.github.albertloubet.libraryfx.factory.FontFactory;
 import com.github.albertloubet.libraryfx.foundation.ControllerFoundation;
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -32,11 +34,19 @@ public class LibraryController extends ControllerFoundation {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        var poppins = FontFactory.getFont(FontEnum.POPPINS_MEDIUM);
+
         buttonMenuCalendar.setText(getLocalizationText(LocalizationEnum.MENU_CALENDAR));
         buttonMenuPerson.setText(getLocalizationText(LocalizationEnum.MENU_PERSON));
         buttonMenuBook.setText(getLocalizationText(LocalizationEnum.MENU_BOOK));
         buttonMenuLoan.setText(getLocalizationText(LocalizationEnum.MENU_LOAN));
         buttonMenuExit.setText(getLocalizationText(LocalizationEnum.MENU_EXIT));
+
+        buttonMenuCalendar.setFont(poppins);
+        buttonMenuPerson.setFont(poppins);
+        buttonMenuBook.setFont(poppins);
+        buttonMenuLoan.setFont(poppins);
+        buttonMenuExit.setFont(poppins);
 
         menu = Map.of(
                 buttonMenuCalendar.getId(), buttonMenuCalendar,

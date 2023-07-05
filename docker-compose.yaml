@@ -19,6 +19,8 @@ services:
 networks:
   libraryfx-network:
     driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
 
 volumes:
   libraryfx-volume:

@@ -1,9 +1,9 @@
 package com.github.albertloubet.libraryfx.service;
 
 import com.github.albertloubet.libraryfx.enumerator.FileEnum;
+import com.github.albertloubet.libraryfx.manager.SessionManager;
 import com.github.albertloubet.libraryfx.model.dto.UserRememberDTO;
 import com.github.albertloubet.libraryfx.repository.UserRepository;
-import com.github.albertloubet.libraryfx.util.SessionUtil;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -27,7 +27,7 @@ public class UserService {
 
     public void authenticate(String username, String password) {
         var user = userRepository.findUser(username, password);
-        SessionUtil.setUserLogged(user);
+        SessionManager.setUserLogged(user);
     }
 
     @SneakyThrows
@@ -44,7 +44,7 @@ public class UserService {
     public void saveUserSession(String password) {
         Executors.newSingleThreadExecutor().execute(() -> {
             var user = UserRememberDTO.builder()
-                    .username(SessionUtil.getUsernameLogged())
+                    .username(SessionManager.getUsernameLogged())
                     .password(password)
                     .build();
             try (var writer = new FileWriter(FileEnum.REMEMBER.getName())) {

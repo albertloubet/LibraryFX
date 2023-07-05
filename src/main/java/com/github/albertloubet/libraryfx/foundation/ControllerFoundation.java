@@ -1,6 +1,8 @@
 package com.github.albertloubet.libraryfx.foundation;
 
+import com.github.albertloubet.libraryfx.enumerator.FontEnum;
 import com.github.albertloubet.libraryfx.enumerator.LocalizationEnum;
+import com.github.albertloubet.libraryfx.factory.FontFactory;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -43,10 +45,10 @@ public abstract class ControllerFoundation implements Initializable {
         return result.orElseThrow() == ButtonType.OK;
     }
 
-    public void addInfo(Optional<String> title, String msg) {
+    public void addInfo(@NonNull Optional<String> title, String msg) {
         var alert = new Alert(Alert.AlertType.INFORMATION);
 
-        alert.setTitle(title.orElse(getLocalizationText((LocalizationEnum.INFO))));
+        alert.setTitle(title.orElseGet(() -> getLocalizationText((LocalizationEnum.INFO))));
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
@@ -61,10 +63,10 @@ public abstract class ControllerFoundation implements Initializable {
         alert.showAndWait();
     }
 
-    public void addWarm(Optional<String> title, String msg) {
+    public void addWarm(@NonNull Optional<String> title, String msg) {
         var alert = new Alert(Alert.AlertType.WARNING);
 
-        alert.setTitle(title.orElse(getLocalizationText(LocalizationEnum.NOTICE)));
+        alert.setTitle(title.orElseGet(() -> getLocalizationText(LocalizationEnum.NOTICE)));
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
@@ -88,8 +90,8 @@ public abstract class ControllerFoundation implements Initializable {
         alert.showAndWait();
     }
 
-    public static void addError(Exception ex, String subtitle, String header) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+    public void addError(Exception ex, String subtitle, String header) {
+        var alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erro");
         alert.setHeaderText(subtitle);
         alert.setContentText(header);
@@ -100,7 +102,8 @@ public abstract class ControllerFoundation implements Initializable {
         ex.printStackTrace();
         String exceptionText = sw.toString();
 
-        Label label = new Label("O erro é:");
+        var label = new Label(getLocalizationText(LocalizationEnum.ERROR_BASIC));
+        label.setFont(FontFactory.getFont(FontEnum.POPPINS_REGULAR));
 
         TextArea textArea = new TextArea(exceptionText);
         textArea.setEditable(false);
@@ -111,7 +114,7 @@ public abstract class ControllerFoundation implements Initializable {
         GridPane.setVgrow(textArea, Priority.ALWAYS);
         GridPane.setHgrow(textArea, Priority.ALWAYS);
 
-        GridPane expContent = new GridPane();
+        var expContent = new GridPane();
         expContent.setMaxWidth(Double.MAX_VALUE);
         expContent.add(label, 0, 0);
         expContent.add(textArea, 0, 1);
@@ -127,9 +130,7 @@ public abstract class ControllerFoundation implements Initializable {
         dialog.setHeaderText(header);
         dialog.setContentText(msg);
 
-        Optional<String> result = dialog.showAndWait();
-
-        return result.orElse("");
+        return dialog.showAndWait().orElse(StringUtils.EMPTY);
     }
 
     public String inputDropbox(String title, String header, String msg, List<String> content) {
@@ -139,8 +140,7 @@ public abstract class ControllerFoundation implements Initializable {
         dialog.setHeaderText(header);
         dialog.setContentText(msg);
 
-        Optional<String> result = dialog.showAndWait();
-        return result.orElse(StringUtils.EMPTY);
+        return dialog.showAndWait().orElse(StringUtils.EMPTY);
     }
 
     public String selectDiretory(Stage stage){
